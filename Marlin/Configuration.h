@@ -74,10 +74,10 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Yoyo, default config)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
+//#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
 
 /**
  * *** VENDORS PLEASE READ ***
@@ -116,7 +116,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 250000
+#define BAUDRATE 115200
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -124,16 +124,16 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  #define MOTHERBOARD BOARD_GT2560_REV_A_PLUS
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "Pussy 3D Printer"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+#define MACHINE_UUID "6334abc2-45c3-4189-953b-c99e5dc0d966"
 
 // @section extruder
 
@@ -142,7 +142,7 @@
 #define EXTRUDERS 1
 
 // Generally expected filament diameter (1.75, 2.85, 3.0, ...). Used for Volumetric, Filament Width Sensor, etc.
-#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0
+#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75
 
 // For Cyclops or any "multi-extruder" that shares a single nozzle.
 //#define SINGLENOZZLE
@@ -308,7 +308,7 @@
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 #define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -373,9 +373,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define DEFAULT_Kp 22.2
-  #define DEFAULT_Ki 1.08
-  #define DEFAULT_Kd 114
+  //#define DEFAULT_Kp 22.2
+  //#define DEFAULT_Ki 1.08
+  //#define DEFAULT_Kd 114
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -386,6 +386,11 @@
   //#define DEFAULT_Kp 63.0
   //#define DEFAULT_Ki 2.25
   //#define DEFAULT_Kd 440
+  // LJU 20180702 - E3dV6 valeur ajusté  M303 E0 S220 C8
+  // Head E3dv6
+ #define  DEFAULT_Kp 21.83
+  #define  DEFAULT_Ki 1.79
+  #define  DEFAULT_Kd 66.60															 
 
 #endif // PIDTEMP
 
@@ -406,7 +411,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -424,9 +429,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+  //#define DEFAULT_bedKp 10.00
+  //#define DEFAULT_bedKi .023
+  //#define DEFAULT_bedKd 305.4
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -435,6 +440,11 @@
   //#define DEFAULT_bedKd 1675.16
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
+  // GT2560 sur Anet A8 bed
+  //LJU 20180622 - Ajustement a 90°C
+  #define  DEFAULT_bedKp 504.63
+  #define  DEFAULT_bedKi 74.22
+  #define  DEFAULT_bedKd 857.75			
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -521,13 +531,13 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define X_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true // set to true to invert the logic of the probe.
 
 /**
  * Specify Stepper Driver types
@@ -540,17 +550,17 @@
  *          TMC5130, TMC5130_STANDALONE
  * :['A4988', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE']
  */
-#define X_DRIVER_TYPE  A4988
-#define Y_DRIVER_TYPE  A4988
-#define Z_DRIVER_TYPE  A4988
-#define X2_DRIVER_TYPE A4988
-#define Y2_DRIVER_TYPE A4988
-#define Z2_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE A4988
-#define E1_DRIVER_TYPE A4988
-#define E2_DRIVER_TYPE A4988
-#define E3_DRIVER_TYPE A4988
-#define E4_DRIVER_TYPE A4988
+#define X_DRIVER_TYPE  DRV8825
+#define Y_DRIVER_TYPE  DRV8825
+#define Z_DRIVER_TYPE  DRV8825
+#define X2_DRIVER_TYPE DRV8825
+#define Y2_DRIVER_TYPE DRV8825
+#define Z2_DRIVER_TYPE DRV8825
+#define E0_DRIVER_TYPE DRV8825
+#define E1_DRIVER_TYPE DRV8825
+#define E2_DRIVER_TYPE DRV8825
+#define E3_DRIVER_TYPE DRV8825
+#define E4_DRIVER_TYPE DRV8825
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -596,16 +606,50 @@
 /**
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
+  Voir : https://www.prusaprinters.org/calculator/#steppers
+    X=Y=impulsion_par_mm = (impulsions_par_rev * microsteps) / (pas de la dent * nombre_de_dents_de_la_poulie)
+    Z=impulsion_par_mm = (impulsions_par_rev * microsteps) / (diamètre_effectif_de_l’entrainement * pi)
+  Voir pour Extrudeur titan : https://e3d-online.dozuki.com/Guide/Titan+Marlin+Configuration/35
+   E0= (Motor Steps * Micro-stepping * Gear Ration)/ (Hobb Diametre * pi)
+   Gear ratio 33.90/11.9 environ = 3. A a juster à posterior
+   (200*16*(33.9/11.9))/(7.3 * 3.142) = 397.44
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+
+
+/* Motor Defintions LJU 20180610*/
+#define STEPS_PER_REVOLUTION_X 200*32 // 1.8° * microstep
+#define STEPS_PER_REVOLUTION_Y 200*32
+#define STEPS_PER_REVOLUTION_Z 200*32 // 1/32 micro step
+#define STEPS_PER_REVOLUTION_E 200*16 // 1/16 micro step
+
+#define IDLER_TEETH_X 16
+#define IDLER_TEETH_Y 16
+
+#define BELT_PITCH_X 2 //(.2 * MM_PER_INCH)
+#define BELT_PITCH_Y 2 // (.2 * MM_PER_INCH)
+
+#define PITCH_OF_Z_ROD 8
+
+#define EXTRUDER_GEAR_RATIO 1 //
+#define PINCH_WHEEL_DIAMETER 11  //LJU20180611
+#define EXTRUDER_CORRETION 1 // apres avoir msurer le filament utilisé
+
+#define AXIS_STEPS_PER_UNIT_X (STEPS_PER_REVOLUTION_X / IDLER_TEETH_X / BELT_PITCH_X) 
+#define AXIS_STEPS_PER_UNIT_Y (STEPS_PER_REVOLUTION_Y / IDLER_TEETH_Y / BELT_PITCH_Y)
+#define AXIS_STEPS_PER_UNIT_Z (STEPS_PER_REVOLUTION_Z / PITCH_OF_Z_ROD)
+#define AXIS_STEPS_PER_UNIT_E ((STEPS_PER_REVOLUTION_E * EXTRUDER_GEAR_RATIO / (PINCH_WHEEL_DIAMETER * PI)))*EXTRUDER_CORRETION
+
+
+ //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { AXIS_STEPS_PER_UNIT_X, AXIS_STEPS_PER_UNIT_Y, AXIS_STEPS_PER_UNIT_Z, AXIS_STEPS_PER_UNIT_E }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 400, 400, 5, 45 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -706,7 +750,7 @@
  * A Fix-Mounted Probe either doesn't deploy or needs manual deployment.
  *   (e.g., an inductive probe or a nozzle-based probe-switch.)
  */
-//#define FIX_MOUNTED_PROBE
+#define FIX_MOUNTED_PROBE
 
 /**
  * Z Servo Probe, such as an endstop switch on a rotating arm.
@@ -766,12 +810,15 @@
  *      O-- FRONT --+
  *    (0,0)
  */
-#define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
+//LJU 20180803 - ed3v6 Sonde de 18 devant
+#define X_PROBE_OFFSET_FROM_EXTRUDER 30   // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -13   // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+#define PROBE_SIZE 18          // diametre de la sonde	
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE max(PROBE_SIZE/2, 10)
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -801,7 +848,7 @@
  * Example: `M851 Z-5` with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: `M851 Z+1` with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // Z Clearance for Deploy/Stow
+#define Z_CLEARANCE_DEPLOY_PROBE   5 // Z Clearance for Deploy/Stow
 #define Z_CLEARANCE_BETWEEN_PROBES  5 // Z Clearance between probe points
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
@@ -813,7 +860,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 20
 
 // Enable the M48 repeatability test to test probe accuracy
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 // :{ 0:'Low', 1:'High' }
@@ -839,8 +886,8 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR true
 
 // @section extruder
 
@@ -869,16 +916,17 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220 -10 // cause longueur du support blocage de courroie
+#define Z_BED_SIZE 240 - Z_HOMING_HEIGHT -15											
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
+#define X_MIN_POS -20
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS X_BED_SIZE +2 
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+#define Z_MAX_POS Z_BED_SIZE
 
 /**
  * Software Endstops
@@ -965,7 +1013,7 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1010,14 +1058,18 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  //#define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
-  //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
-  //#define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
+  #define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
+  #define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
+  #define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
   //#define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
+  //#define LEFT_PROBE_BED_POSITION max((MIN_PROBE_EDGE / 2),X_PROBE_OFFSET_FROM_EXTRUDER)
+  //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - max((MIN_PROBE_EDGE/2),X_PROBE_OFFSET_FROM_EXTRUDER))
+  //#define FRONT_PROBE_BED_POSITION max(Y_PROBE_OFFSET_FROM_EXTRUDER, (MIN_PROBE_EDGE/2))
+  #define BACK_PROBE_BED_POSITION (Y_BED_SIZE + min(Y_PROBE_OFFSET_FROM_EXTRUDER, (MIN_PROBE_EDGE/-2)))
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -1118,8 +1170,10 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+
+
+//#define MANUAL_X_HOME_POS 0 //#define MANUAL_X_HOME_POS -13
+//#define MANUAL_Y_HOME_POS 0 // #define MANUAL_Y_HOME_POS -5
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -1131,7 +1185,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_BED_SIZE) / 2)    // X point for Z homing when homing all axes (G28).
@@ -1139,8 +1193,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_XY (80*60)
+#define HOMING_FEEDRATE_Z  (7*60)
 
 // @section calibrate
 
@@ -1213,7 +1267,7 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //
-//#define EEPROM_SETTINGS // Enable for M500 and M501 commands
+#define EEPROM_SETTINGS // Enable for M500 and M501 commands
 //#define DISABLE_M503    // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT   // Give feedback on EEPROM commands. Disable to save PROGMEM.
 
@@ -1245,12 +1299,12 @@
 // @section temperature
 
 // Preheat Constants
-#define PREHEAT_1_TEMP_HOTEND 180
-#define PREHEAT_1_TEMP_BED     70
+#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
-#define PREHEAT_2_TEMP_HOTEND 240
-#define PREHEAT_2_TEMP_BED    110
+#define PREHEAT_2_TEMP_HOTEND 220
+#define PREHEAT_2_TEMP_BED    90
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
 /**
@@ -1916,4 +1970,12 @@
 // With this option servos are powered only during movement, then turned off to prevent jitter.
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
 
+/**
+ * Customize common displays for GT2560
+ */
+#if ENABLED(ULTIMAKERCONTROLLER) || ENABLED(REPRAP_DISCOUNT_SMART_CONTROLLER) || ENABLED(G3D_PANEL) || ENABLED(MKS_MINI_12864)
+  #define SDSUPPORT   // Force SD Card support on for these displays
+#elif ENABLED(ULTRA_LCD) && ENABLED(DOGLCD) // No panel, just graphical LCD?
+  #define LCD_WIDTH 20 // Default is 22. For this Geeetech use 20
+#endif	
 #endif // CONFIGURATION_H
