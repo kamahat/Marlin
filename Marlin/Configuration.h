@@ -550,7 +550,7 @@
  *          TMC5130, TMC5130_STANDALONE
  * :['A4988', 'DRV8825', 'LV8729', 'L6470', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE']
  */
-#define X_DRIVER_TYPE  DRV8825
+#define X_DRIVER_TYPE   DRV8825 //TMC2130
 #define Y_DRIVER_TYPE  DRV8825
 #define Z_DRIVER_TYPE  DRV8825
 #define X2_DRIVER_TYPE DRV8825
@@ -692,7 +692,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-//#define S_CURVE_ACCELERATION
+#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -818,7 +818,7 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE max(PROBE_SIZE/2, 10)
+#define MIN_PROBE_EDGE max(PROBE_SIZE, 10)
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -917,15 +917,15 @@
 
 // The size of the print bed
 #define X_BED_SIZE 220
-#define Y_BED_SIZE 220 -10 // cause longueur du support blocage de courroie
-#define Z_BED_SIZE 240 - Z_HOMING_HEIGHT -15											
+#define Y_BED_SIZE 220  // cause longueur du support blocage de courroie
+#define Z_BED_SIZE 225 - Z_HOMING_HEIGHT -15											
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -20
-#define Y_MIN_POS 0
+#define X_MIN_POS -14 
+#define Y_MIN_POS -4 // 0 a -4
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE +2 
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS X_BED_SIZE 
+#define Y_MAX_POS Y_BED_SIZE -2 // limite du tendeurs des Y
 #define Z_MAX_POS Z_BED_SIZE
 
 /**
@@ -1065,11 +1065,11 @@
   #define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
   #define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
   #define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
-  //#define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
+  #define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
   //#define LEFT_PROBE_BED_POSITION max((MIN_PROBE_EDGE / 2),X_PROBE_OFFSET_FROM_EXTRUDER)
   //#define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - max((MIN_PROBE_EDGE/2),X_PROBE_OFFSET_FROM_EXTRUDER))
   //#define FRONT_PROBE_BED_POSITION max(Y_PROBE_OFFSET_FROM_EXTRUDER, (MIN_PROBE_EDGE/2))
-  #define BACK_PROBE_BED_POSITION (Y_BED_SIZE + min(Y_PROBE_OFFSET_FROM_EXTRUDER, (MIN_PROBE_EDGE/-2)))
+  //#define BACK_PROBE_BED_POSITION (Y_BED_SIZE + min(Y_PROBE_OFFSET_FROM_EXTRUDER, (MIN_PROBE_EDGE/-2)))
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST

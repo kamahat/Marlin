@@ -39,11 +39,47 @@
 // Limit Switches
 //
 #define X_MIN_PIN          22
-#define X_MAX_PIN          24
+// #define X_MAX_PIN          24//to mbe used for x CS pin
 #define Y_MIN_PIN          26
-#define Y_MAX_PIN          28
+// #define Y_MAX_PIN          28 //to be used for y CS pin
 #define Z_MIN_PIN          30
-#define Z_MAX_PIN          32
+#define Z_MAX_PIN          32 //to be used for z probe pin
+
+// Pins need to be redefined for TMC2130 drivers
+//SDcard connector layout: (the dots represent the gap in the connector socket on the board)
+//.... 
+//0 1 2 3 4
+//5 6 7 8 9
+
+//0= Physical pin 20 on the atmega (Digital pin 52 or SCK/PCINT1) 
+//1= Physical pin 19 on the atmega (Digital pin 53 or SS/PCINT0) 
+//2= Physical pin 21 on the atmega (Digital pin 51 or MOSI/PCINT2)
+//3= Physical pin 30 on the atmega (reset!)
+//4= (5V+? not measured but assumed)
+//9= GND
+//8= Physical pin 50 on the atmega (Digital pin 38)
+//7= Physical pin 52 on the atmega (Digital pin 40)
+//6= Physical pin 43 on the atmega (Digital pin 21 /SCL int0)
+//5= Physical pin 22 on the atmega (Digital pin 50 MISO/PCINT3)
+
+//How to wire up your TMC2130 driver boards....
+
+// note example on geetech forum had pins 5 and 2 swapped i have changed to match tinkihead info
+//Connect SDsocket pin 0 (SCK) to the SCK pins of all TMC2130 stepper driver boards
+//Connect SDsocket pin 5 (MOSI) to the SCO pins of all TMC2130 stepper driver boards
+//Connect SDsocket pin 2 (MISO) to the SCI pins of all TMC2130 stepper driver boards 
+
+//From tinkihead post
+//SDO -> MISO
+//SDI -> MOSI
+//CS -> digital pins
+//SCK -> SCK
+
+//
+
+// TMC2130 setup
+#define X_CS_PIN 24 //x max
+#define Y_CS_PIN 28 //y max
 
 //
 // Steppers
