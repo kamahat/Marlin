@@ -29,7 +29,8 @@
 #include "pins_GT2560_REV_A.h"
 
 #if ENABLED(BLTOUCH)
-  #define SERVO0_PIN  11
+  //#define SERVO0_PIN  
+  #define SERVO0_PIN  32
 #else
   #define SERVO0_PIN  32
 #endif
