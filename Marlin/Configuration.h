@@ -636,11 +636,9 @@
 
 #define PITCH_OF_Z_ROD 8
 
-#define EXTRUDER_GEAR_RATIO 1 //
+#define EXTRUDER_GEAR_RATIO 5,723 // LJU 20180924 - grande roue
 #define PINCH_WHEEL_DIAMETER 11  //LJU20180611
-#define EXTRUDER_CORRECTION 1.01 // apres avoir mesurer le filament utilisé
-									// 1.02 le 20180908 ==> overextrusion
-                  // 1.01 le 20189809 ==> test
+#define EXTRUDER_CORRECTION 1 // 
 
 #define AXIS_STEPS_PER_UNIT_X (STEPS_PER_REVOLUTION_X / IDLER_TEETH_X / BELT_PITCH_X) 
 #define AXIS_STEPS_PER_UNIT_Y (STEPS_PER_REVOLUTION_Y / IDLER_TEETH_Y / BELT_PITCH_Y)
