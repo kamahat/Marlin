@@ -41,9 +41,9 @@
 #define X_MIN_PIN          22
 // #define X_MAX_PIN          24//to mbe used for x CS pin
 #define Y_MIN_PIN          26
-#define Y_MAX_PIN          28 //to be used for y CS pin
+//#define Y_MAX_PIN          28 //to be used for y CS pin
 #define Z_MIN_PIN          30
-#define Z_MAX_PIN          32 //to be used for z probe pin
+//#define Z_MAX_PIN          32 //to be used for E0 probe pin
 
 // Pins need to be redefined for TMC2130 drivers
 //SDcard connector layout: (the dots represent the gap in the connector socket on the board)
@@ -75,11 +75,25 @@
 //CS -> digital pins
 //SCK -> SCK
 
-//
-
 // TMC2130 setup
+
+#if ENABLED(TMC_USE_SW_SPI)
+  #ifndef TMC_SW_MOSI
+    #define TMC_SW_MOSI    51
+  #endif
+  #ifndef TMC_SW_MISO
+    #define TMC_SW_MISO    50
+  #endif
+  #ifndef TMC_SW_SCK
+    #define TMC_SW_SCK     52
+  #endif
+#endif
+
+
 #define X_CS_PIN 24 //x max
-//#define Y_CS_PIN 28 //y max
+#define Y_CS_PIN 28 //y max
+// #define Z_CS_PIN 28 //Z max
+#define E0_CS_PIN 32 //Z max
 
 //
 // Steppers
@@ -100,9 +114,13 @@
 #define E0_DIR_PIN         45
 #define E0_ENABLE_PIN      41
 
-#define E1_STEP_PIN        49
-#define E1_DIR_PIN         47
-#define E1_ENABLE_PIN      48
+//#define E1_STEP_PIN        49
+//#define E1_DIR_PIN         47
+//#define E1_ENABLE_PIN      48
+
+#define Z2_STEP_PIN         49
+#define Z2_DIR_PIN          47
+#define Z2_ENABLE_PIN       48
 
 //
 // Temperature Sensors
@@ -115,7 +133,7 @@
 // Heaters / Fans
 //
 #define HEATER_0_PIN        2
-//#define HEATER_1_PIN        3
+//#define HEATER_1_PIN        3 // devient le pin du fan
 #define HEATER_BED_PIN      4
 #ifndef FAN_PIN
   //#define FAN_PIN           7

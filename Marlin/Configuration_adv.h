@@ -460,7 +460,8 @@
 #define ADAPTIVE_STEP_SMOOTHING
 
 // Microstep setting (Only functional when stepper driver microstep pins are connected to MCU.
-#define MICROSTEP_MODES { 16, 16, 16, 16, 16 } // [1,2,4,8,16]
+//#define MICROSTEP_MODES { 16, 16, 16, 16, 16 } // [1,2,4,8,16]
+#define MICROSTEP_MODES { 32, 32, 32, 16, 32 } // [1,2,4,8,16]
 
 /**
  *  @section  stepper motor current
@@ -521,7 +522,7 @@
 // @section lcd
 
 // Include a page of printer information in the LCD Main Menu
-//#define LCD_INFO_MENU
+#define LCD_INFO_MENU
 
 // Scroll a longer status message into view
 //#define STATUS_MESSAGE_SCROLLING
@@ -796,7 +797,7 @@
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT  1   // Length of each arc segment
   #define N_ARC_CORRECTION   25   // Number of intertpolated segments between corrections
-  //#define ARC_P_CIRCLES         // Enable the 'P' parameter to specify complete circles
+  #define ARC_P_CIRCLES         // Enable the 'P' parameter to specify complete circles
   //#define CNC_WORKSPACE_PLANES  // Allow G2/G3 to operate in XY, ZX, or YZ planes
 #endif
 
@@ -1095,30 +1096,30 @@
  */
 #if HAS_TRINAMIC
 
-  #define R_SENSE           0.11  // R_sense resistor for SilentStepStick2130
-  #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
+  #define R_SENSE           0.11  // ORI=0.11 R_sense resistor for SilentStepStick2130
+  #define HOLD_MULTIPLIER    0.25  // ORI=0.5 Scales down the holding current from run current
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
-  #define X_CURRENT          700  // rms current in mA. Multiply by 1.41 for peak current.
+  #define X_CURRENT          700  // rms current in mA. Multiply by 1.41 for peak current. (ori=700)
   #define X_MICROSTEPS        32  // 0..256
 
-  #define Y_CURRENT          800
+  #define Y_CURRENT          650 //(ori=800)
   #define Y_MICROSTEPS        32
 
-  #define Z_CURRENT          800
+  #define Z_CURRENT          800 //(ori=800)
   #define Z_MICROSTEPS        32
 
-  #define X2_CURRENT         800
+  #define X2_CURRENT         800  // (ori=800)
   #define X2_MICROSTEPS       32
 
-  #define Y2_CURRENT         800
+  #define Y2_CURRENT         800  // (ori=700)
   #define Y2_MICROSTEPS       32
 
   #define Z2_CURRENT         800
   #define Z2_MICROSTEPS       32
 
-  #define E0_CURRENT         800
-  #define E0_MICROSTEPS       16
+  #define E0_CURRENT         800  //(ori=800)
+  #define E0_MICROSTEPS       16  //(ori=16)
 
   #define E1_CURRENT         800
   #define E1_MICROSTEPS       16
@@ -1137,7 +1138,7 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  //#define TMC_USE_SW_SPI
+  #define TMC_USE_SW_SPI
   //#define TMC_SW_MOSI       -1
   //#define TMC_SW_MISO       -1
   //#define TMC_SW_SCK        -1
@@ -1173,12 +1174,12 @@
    * STEALTHCHOP needs to be enabled.
    * M913 X/Y/Z/E to live tune the setting
    */
-  //#define HYBRID_THRESHOLD
+  #define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
-  #define Y2_HYBRID_THRESHOLD    100
+  #define X_HYBRID_THRESHOLD     90  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    90
+  #define Y_HYBRID_THRESHOLD     90
+  #define Y2_HYBRID_THRESHOLD    90
   #define Z_HYBRID_THRESHOLD       3
   #define Z2_HYBRID_THRESHOLD      3
   #define E0_HYBRID_THRESHOLD     30
@@ -1199,7 +1200,7 @@
    * It is advised to set X/Y/Z_HOME_BUMP_MM to 0.
    * M914 X/Y/Z to live tune the setting
    */
-  #define SENSORLESS_HOMING // TMC2130 only
+  //#define SENSORLESS_HOMING // TMC2130 only
 
   #if ENABLED(SENSORLESS_HOMING)
     #define X_HOMING_SENSITIVITY  8
@@ -1481,7 +1482,7 @@
 /**
  * User-defined menu items that execute custom GCode
  */
-//#define CUSTOM_USER_MENUS
+#define CUSTOM_USER_MENUS
 #if ENABLED(CUSTOM_USER_MENUS)
   #define USER_SCRIPT_DONE "M117 User Script Done"
   #define USER_SCRIPT_AUDIBLE_FEEDBACK
