@@ -531,10 +531,10 @@
 //#define STATUS_MESSAGE_SCROLLING
 
 // On the Info Screen, display XY with one decimal place when possible
-//#define LCD_DECIMAL_SMALL_XY
+#define LCD_DECIMAL_SMALL_XY
 
 // The timeout (in ms) to return to the status screen from sub-menus
-//#define LCD_TIMEOUT_TO_STATUS 15000
+#define LCD_TIMEOUT_TO_STATUS 15000
 
 // Add an 'M73' G-code to set the current percentage
 //#define LCD_SET_PROGRESS_MANUALLY
@@ -796,7 +796,7 @@
 //
 // G2/G3 Arc Support
 //
-#define ARC_SUPPORT               // Disable this feature to save ~3226 bytes
+// #define ARC_SUPPORT               // Disable this feature to save ~3226 bytes
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT  1   // Length of each arc segment
   #define N_ARC_CORRECTION   25   // Number of intertpolated segments between corrections
@@ -805,7 +805,7 @@
 #endif
 
 // Support for G5 with XYZE destination and IJPQ offsets. Requires ~2666 bytes.
-#define BEZIER_CURVE_SUPPORT
+//#define BEZIER_CURVE_SUPPORT
 
 // G38.2 and G38.3 Probe Target
 // Set MULTIPLE_PROBING if you want G38 to double touch
@@ -1107,12 +1107,12 @@
   #define X_MICROSTEPS        32  // 0..256
 
   #define Y_CURRENT          650 //(ori=800)
-  #define Y_MICROSTEPS        32
+  #define Y_MICROSTEPS        16
 
-  #define Z_CURRENT          800 //(ori=800)
+  #define Z_CURRENT          800
   #define Z_MICROSTEPS        32
 
-  #define X2_CURRENT         800  // (ori=800)
+  #define X2_CURRENT         800
   #define X2_MICROSTEPS       32
 
   #define Y2_CURRENT         800  // (ori=700)
@@ -1121,8 +1121,8 @@
   #define Z2_CURRENT         800
   #define Z2_MICROSTEPS       32
 
-  #define E0_CURRENT         800  //(ori=800)
-  #define E0_MICROSTEPS       16  //(ori=16)
+  #define E0_CURRENT         800
+  #define E0_MICROSTEPS       16
 
   #define E1_CURRENT         800
   #define E1_MICROSTEPS       16

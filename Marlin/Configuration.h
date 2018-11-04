@@ -131,7 +131,7 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_GT2560_REV_A_PLUS
+	#define MOTHERBOARD BOARD_GT2560_REV_A_PLUS
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
@@ -397,7 +397,7 @@
   // Head E3dv6
  #define  DEFAULT_Kp 21.83
   #define  DEFAULT_Ki 1.79
-  #define  DEFAULT_Kd 66.60															 
+  #define  DEFAULT_Kd 66.60
 
 #endif // PIDTEMP
 
@@ -451,7 +451,7 @@
   //LJU 20180622 - Ajustement a 90°C
   #define  DEFAULT_bedKp 504.63
   #define  DEFAULT_bedKi 74.22
-  #define  DEFAULT_bedKd 857.75			
+  #define  DEFAULT_bedKd 857.75
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -562,12 +562,12 @@
  */
 
 #define X_DRIVER_TYPE  TMC2130 // DRV8825
-#define Y_DRIVER_TYPE  TMC2130	//DRV8825
+#define Y_DRIVER_TYPE  DRV8825	//DRV8825
 #define Z_DRIVER_TYPE  DRV8825
 #define X2_DRIVER_TYPE DRV8825
 #define Y2_DRIVER_TYPE DRV8825
 #define Z2_DRIVER_TYPE DRV8825
-#define E0_DRIVER_TYPE DRV8825
+#define E0_DRIVER_TYPE TMC2130
 #define E1_DRIVER_TYPE DRV8825
 #define E2_DRIVER_TYPE DRV8825
 #define E3_DRIVER_TYPE DRV8825
@@ -576,7 +576,7 @@
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
-// #define ENDSTOP_INTERRUPTS_FEATURE
+//#define ENDSTOP_INTERRUPTS_FEATURE
 
 /**
  * Endstop Noise Filter
@@ -633,7 +633,7 @@
 #define STEPS_PER_REVOLUTION_X 200*32 // 1.8° (200 pas par tour)  * 1/32 micro step
 #define STEPS_PER_REVOLUTION_Y 200*32
 #define STEPS_PER_REVOLUTION_Z 200*32 // 1/32 micro step
-#define STEPS_PER_REVOLUTION_E 200*16 // 1/16 micro step
+#define STEPS_PER_REVOLUTION_E 200*32 // 1/16 micro step
 
 #define IDLER_TEETH_X 16
 #define IDLER_TEETH_Y 16
@@ -643,15 +643,14 @@
 
 #define PITCH_OF_Z_ROD 8
 
-#define EXTRUDER_GEAR_RATIO 1 // LJU 20180924 - grande roue
-#define PINCH_WHEEL_DIAMETER 11  //LJU20180611
-#define EXTRUDER_CORRECTION 1.01 // =92.60
+#define EXTRUDER_GEAR_RATIO 1.62 // LJU 20181923 - nouvel extrudeur 
+#define PINCH_WHEEL_DIAMETER 8  //ORI=11 LJU20180611
+#define EXTRUDER_CORRECTION 1 // 1.01 avant 20181023
 
 #define AXIS_STEPS_PER_UNIT_X (STEPS_PER_REVOLUTION_X / IDLER_TEETH_X / BELT_PITCH_X) 
 #define AXIS_STEPS_PER_UNIT_Y (STEPS_PER_REVOLUTION_Y / IDLER_TEETH_Y / BELT_PITCH_Y)
 #define AXIS_STEPS_PER_UNIT_Z (STEPS_PER_REVOLUTION_Z / PITCH_OF_Z_ROD)
 #define AXIS_STEPS_PER_UNIT_E ((STEPS_PER_REVOLUTION_E * EXTRUDER_GEAR_RATIO / (PINCH_WHEEL_DIAMETER * PI)))*EXTRUDER_CORRECTION
-
 
  //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { AXIS_STEPS_PER_UNIT_X, AXIS_STEPS_PER_UNIT_Y, AXIS_STEPS_PER_UNIT_Z, AXIS_STEPS_PER_UNIT_E }
@@ -824,7 +823,6 @@
  */
 //LJU 20180803 - ed3v6 Sonde de 18 devant
 #define X_PROBE_OFFSET_FROM_EXTRUDER 32   // X offset: -left  +right  [of the nozzle]
-//#define Y_PROBE_OFFSET_FROM_EXTRUDER -13   // Y offset: -front +behind [the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 6   // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 #define PROBE_SIZE 18          // diametre de la sonde	
@@ -873,7 +871,7 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 0
 
 // Enable the M48 repeatability test to test probe accuracy
-#define Z_MIN_PROBE_REPEATABILITY_TEST
+//#define Z_MIN_PROBE_REPEATABILITY_TEST
 
 // For Inverting Stepper Enable Pins (Active Low) use 0, Non Inverting (Active High) use 1
 // :{ 0:'Low', 1:'High' }
@@ -899,13 +897,13 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR true // false pour DRV8825 , true pour TMC2130
-#define INVERT_Y_DIR true // false pour DRV8825 , true pour TMC2130
+#define INVERT_Y_DIR false // false pour DRV8825 , true pour TMC2130
 #define INVERT_Z_DIR true
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR false // false pour TMC2130 , true pour DRV8825
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -931,13 +929,13 @@
 // The size of the print bed
 #define X_BED_SIZE 220
 #define Y_BED_SIZE 220  // cause longueur du support blocage de courroie
-#define Z_BED_SIZE 225 - Z_HOMING_HEIGHT -15											
+#define Z_BED_SIZE 225 - Z_HOMING_HEIGHT -15
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -14 
-#define Y_MIN_POS -4 // 0 a -4
+#define X_MIN_POS -14
+#define Y_MIN_POS -4
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE 
+#define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE -2 // limite du tendeurs des Y
 #define Z_MAX_POS Z_BED_SIZE
 
@@ -1062,6 +1060,7 @@
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
+																											
     #define MESH_TEST_HOTEND_TEMP  205.0  // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
     #define MESH_TEST_BED_TEMP      60.0  // (°C) Default bed temperature for the G26 Mesh Validation Tool.
   #endif
@@ -1071,12 +1070,12 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 9
+  #define GRID_MAX_POINTS_X 7
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
   #define LEFT_PROBE_BED_POSITION MIN_PROBE_EDGE
-  #define RIGHT_PROBE_BED_POSITION (X_BED_SIZE - MIN_PROBE_EDGE)
+  #define RIGHT_PROBE_BED_POSITION X_BED_SIZE
   #define FRONT_PROBE_BED_POSITION MIN_PROBE_EDGE
   #define BACK_PROBE_BED_POSITION (Y_BED_SIZE - MIN_PROBE_EDGE)
   //#define LEFT_PROBE_BED_POSITION max((MIN_PROBE_EDGE / 2),X_PROBE_OFFSET_FROM_EXTRUDER)
@@ -1162,11 +1161,11 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-//#define LEVEL_BED_CORNERS
+#define LEVEL_BED_CORNERS
 
 #if ENABLED(LEVEL_BED_CORNERS)
-  #define LEVEL_CORNERS_INSET 30    // (mm) An inset for corner leveling
-  //#define LEVEL_CENTER_TOO        // Move to the center after the last corner
+  #define LEVEL_CORNERS_INSET 20    // (mm) An inset for corner leveling
+  #define LEVEL_CENTER_TOO        // Move to the center after the last corner
 #endif
 
 /**
@@ -1312,12 +1311,11 @@
 // @section temperature
 
 // Preheat Constants
-#define PREHEAT_1_TEMP_HOTEND 190
-#define PREHEAT_1_TEMP_BED     60
+#define PREHEAT_1_TEMP_HOTEND 205
+#define PREHEAT_1_TEMP_BED     55
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
-
 #define PREHEAT_2_TEMP_HOTEND 220
-#define PREHEAT_2_TEMP_BED    90
+#define PREHEAT_2_TEMP_BED    60
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
 /**
@@ -1378,7 +1376,7 @@
  * Attention: EXPERIMENTAL. G-code arguments may change.
  *
  */
-#define NOZZLE_CLEAN_FEATURE
+//#define NOZZLE_CLEAN_FEATURE
 
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
   // Default number of pattern repetitions
@@ -1417,7 +1415,7 @@
  *   M76 - Pause the print job timer
  *   M77 - Stop the print job timer
  */
-#define PRINTJOB_TIMER_AUTOSTART
+//#define PRINTJOB_TIMER_AUTOSTART
 
 /**
  * Print Counter
@@ -1500,7 +1498,7 @@
  *
  * Use CRC checks and retries on the SD communication.
  */
-#define SD_CHECK_AND_RETRY
+//#define SD_CHECK_AND_RETRY
 
 /**
  * LCD Menu Items
@@ -1555,7 +1553,7 @@
 //
 // Add individual axis homing items (Home X, Home Y, and Home Z) to the LCD menu.
 //
-//#define INDIVIDUAL_AXIS_HOMING_MENU
+#define INDIVIDUAL_AXIS_HOMING_MENU
 
 //
 // SPEAKER/BUZZER

@@ -91,9 +91,9 @@
 
 
 #define X_CS_PIN 24 //x max
-#define Y_CS_PIN 28 //y max
+//#define Y_CS_PIN 28 //y max
 // #define Z_CS_PIN 28 //Z max
-#define E0_CS_PIN 32 //Z max
+#define E0_CS_PIN 28 // on utlise celui du Y au lieu du 32 //Z max
 
 //
 // Steppers
